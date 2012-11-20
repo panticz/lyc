@@ -1,4 +1,0 @@
-lyc
-===
-
-Linux Yamaha Control
