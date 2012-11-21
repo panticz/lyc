@@ -4,6 +4,7 @@
 #include <fcntl.h> /* File control definitions */
 #include <errno.h> /* Error number definitions */
 #include <termios.h> /* POSIX terminal control definitions */
+#include "rxvx700.h" /* Yamaha RX-Vx700 protocol codes */
 
 #define STX 0x02
 #define ETX 0x03
@@ -60,7 +61,7 @@ int init_port()
 /*
 * send command to reciver
 */
-void send_cmd(char *n) {
+void send_cmd(const char *n) {
     int len = strlen(n);
 
     // create command
@@ -123,118 +124,60 @@ int open_port(void)
 /*
 * decode command
 */
-void cmd(char **argv) {
-    char *cmd1 = argv[1];
-    char *cmd2 = argv[2];
+int run_cmd(char *cmd1, char *cmd2) {
+    int l = 0;
 
-    if(strcmp(cmd1, "power") == 0) {
-        if(strcmp(cmd2, "on") == 0) {
-            send_cmd("07E7E");
-        } else if(strcmp(cmd2, "off") == 0) {
-            send_cmd("07E7F");
-        }
-    } else if(strcmp(cmd1, "input") == 0) {http://www.panticz.de/sites/default/files/lyc/lyc
-        if(strcmp(cmd2, "cd") == 0) {
-            send_cmd("07A15");
-        } else if(strcmp(cmd2, "dvd") == 0) {
-            send_cmd("07AC1");
-        }  else if(strcmp(cmd2, "bd") == 0) {
-            send_cmd("07AC8");
-        } else if(strcmp(cmd2, "pc") == 0) {
-            send_cmd("0F7F013FC0"); // set input to NET/USB
-            send_cmd("0F7F0136C9");
-        } else if(strcmp(cmd2, "net") == 0) {
-            send_cmd("0F7F013FC0"); // set input to NET/USB
-            send_cmd("0F7F013FC8");
-        } else if(strcmp(cmd2, "usb") == 0) {
-            send_cmd("0F7F013FC0"); // set input to NET/USB
-            send_cmd("0F7F0138C7");
-        }
-    } else if(strcmp(cmd1, "volume") == 0) {
-        // todo calculate volume
-        //int i = (int) strtol(cmd2, (char **)NULL, 10);
-        //printf("%d", i);
-        // "System Zone1Volume Set -50"07A15 dvd
-        if(strcmp(cmd2, "-45") == 0) {
-            send_cmd("2306D");
-        } else if(strcmp(cmd2, "-50") == 0) {
-            send_cmd("23063");
-        } else if(strcmp(cmd2, "-55") == 0) {
-            send_cmd("23059");
-        } else if(strcmp(cmd2, "up") == 0) {
-            send_cmd("07A1A");
-        } else if(strcmp(cmd2, "down") == 0) {
-            send_cmd("07A1B");
-        }
-    } else if(strcmp(cmd1, "mute") == 0) {
-        if(strcmp(cmd2, "on") == 0) {
-            send_cmd("07EA2");
-        } else if(strcmp(cmd2, "off") == 0) {
-            send_cmd("07EA3");
-        }
-    } else if(strcmp(cmd1, "sleep") == 0) {
-        if(strcmp(cmd2, "off") == 0) {
-            send_cmd("07EB3");
-        } else if(strcmp(cmd2, "120") == 0) {
-            send_cmd("07EB4");
-        } else if(strcmp(cmd2, "90") == 0) {
-            send_cmd("07EB5");
-        } else if(strcmp(cmd2, "60") == 0) {
-            send_cmd("07EB6");
-        } else if(strcmp(cmd2, "30") == 0) {
-            send_cmd("07EB7");
-        }
-    } else if(strcmp(cmd1, "dsp") == 0) {
-        if(strcmp(cmd2, "7ch") == 0) {
-            send_cmd("07EFF");
-        } else if(strcmp(cmd2, "2ch") == 0) {
-            send_cmd("07EC0");
-        } else if(strcmp(cmd2, "normal") == 0) {
-            send_cmd("07EFD");
-        } else if(strcmp(cmd2, "straight") == 0) {
-            send_cmd("07EE0");
-        } else if(strcmp(cmd2, "general") == 0) {
-            send_cmd("07EFC");
-        }
-    } else if(strcmp(cmd1, "memory") == 0) {
-        if(strcmp(cmd2, "1") == 0) {
-            send_cmd("07E35");
-        } else if(strcmp(cmd2, "2") == 0) {
-            send_cmd("07E36");
-        } else if(strcmp(cmd2, "3") == 0) {
-            send_cmd("07E37");
-        } else if(strcmp(cmd2, "4") == 0) {
-            send_cmd("07E38");
-        } else if(strcmp(cmd2, "5") == 0) {
-            send_cmd("07E39");
-        } else if(strcmp(cmd2, "6") == 0) {
-            send_cmd("07E3A");
-        }
-    } else if(strcmp(cmd1, "enhancer") == 0) {
-        if(strcmp(cmd2, "on") == 0) {
-            send_cmd("07ED8");
-        } if(strcmp(cmd2, "off") == 0) {
-            send_cmd("07ED9");
-        }
-    } else if(strcmp(cmd1, "stop") == 0) {
-        send_cmd("0F7F013DC2");
-    } else if(strcmp(cmd1, "play") == 0) {
-        send_cmd("0F7F013EC1");
-    } else if(strcmp(cmd1, "next") == 0) {
-        send_cmd("0F7F013CC3");
-    } else if(strcmp(cmd1, "prev") == 0) {
-        send_cmd("0F7F013BC4");
-    } else if(strcmp(cmd1, "display") == 0) {
-        send_cmd("0F7F0135CA");
-    } else {
-        printf("Command not found");
+    // check parameter
+    if(cmd1 != NULL) {
+        l += strlen(cmd1);
     }
+
+    if(cmd2 != NULL) {
+        l += strlen(cmd2);
+    }
+
+    // put parameter together
+    char c[l + 2];
+    strcpy(c, cmd1);
+    if(cmd2 != NULL) {
+        strcat(c, " ");
+        strcat(c, cmd2);
+    }
+
+    int i;
+    int size = (int)(sizeof(cmd) / sizeof(*cmd));
+    for(i = 0; i < size; i++) {
+        // search command
+        if(strcmp(c, cmd[i][0]) == 0) {
+            // todo calculate volume
+            // int i = (int)strtol(cmd[i][1], (char **)NULL, 10);
+
+            char code[strlen(cmd[i][1]) + 1];
+            strcpy(code, cmd[i][1]);
+
+            char *pch;
+            pch = strtok(code, " ");
+            while (pch != NULL) {
+                send_cmd(pch);
+
+                pch = strtok(NULL, " ");
+            }
+
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 /*
 * main
 */
 int main(int argc, char **argv) {
+    if(argc == 1) {
+        return 1;
+    }
+        
     fd = open_port();
 
     if(fd == -1) {
@@ -271,7 +214,9 @@ int main(int argc, char **argv) {
 */
 
         sleep(.5);
-        cmd(argv);
+        if(run_cmd(argv[1], argv[2]) == 1) {
+            printf("Command not found\n");
+        }
 
         sleep(.5);
         close(fd);
