@@ -39,6 +39,14 @@ const char* cmd[][2] = {
     {"memory 5", "07E39"},
     {"memory 6", "07E3A"},
 
+    {"osd menu", "0F7F012FD0"},
+    {"osd enter", "0F7F0131CE"},
+    {"osd display", "0F7F0135CA"},
+    {"osd up", "0F7F012ED1"},
+    {"osd down", "0F7F0134CB"},
+    {"osd left", "0F7F0132CD"},
+    {"osd right", "0F7F0130CF"},
+
     {"enhancer on", "07ED8"},
     {"enhancer off", "07ED9"},
 
@@ -46,6 +54,6 @@ const char* cmd[][2] = {
     {"play", "0F7F013EC1"},
     {"next", "0F7F013CC3"},
     {"prev", "0F7F013BC4"},
-    {"display", "0F7F0135CA"}
+
 };
 
