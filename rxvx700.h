@@ -13,9 +13,17 @@ const char* cmd[][2] = {
 
     {"volume up", "07A1A"},
     {"volume down", "07A1B"}, 
+    {"volume -30", "2308B"},
+    {"volume -35", "23081"},
+    {"volume -40", "23077"},
     {"volume -45", "2306D"},
     {"volume -50", "23063"},
     {"volume -55", "23059"},
+    {"volume -60", "2304F"},
+    {"volume -65", "23045"},
+    {"volume -70", "2303B"},
+    {"volume -75", "23031"},
+    {"volume -80", "23027"},
 
     {"mute on", "07EA2"},
     {"mute off", "07EA3"},
