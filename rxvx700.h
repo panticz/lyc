@@ -40,6 +40,9 @@ const char* cmd[][2] = {
     {"dsp straight", "07EE0"},
     {"dsp general", "07EFC"},
 
+    {"enhancer on", "07ED8"},
+    {"enhancer off", "07ED9"},
+
     {"memory 1", "07E35"},
     {"memory 2", "07E36"},
     {"memory 3", "07E37"},
