@@ -19,8 +19,8 @@ http://dl.panticz.de/lyc/ar9132/lyc - Atheros AR9132 (TP-LINK TL-WR1043ND / TL-W
 3. Set up USB Serial adapter  
 http://www.panticz.de/USB-Serial-adapter
 
-4. Run command
-`./lyc input dvd`
+4. Run command  
+`./lyc input dvd`  
 `./lyc volume up`
 
 ### Compile for OpenWRT (ar9132) router
