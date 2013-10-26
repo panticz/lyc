@@ -7,8 +7,8 @@ Linux Yamaha receiver control
 http://dl.panticz.de/lyc/i386/lyc - i386 compiled  
 http://dl.panticz.de/lyc/ar9132/lyc - Atheros AR9132 (TP-LINK TL-WR1043ND / TL-WDR4300 router)
 
-### Compile
-1. Download lyc.c and Makefile  
+### Compile (Linux)
+1. Download source files  
 `wget https://raw.github.com/panticz/lyc/master/Makefile`  
 `wget https://raw.github.com/panticz/lyc/master/lyc.c`  
 `wget https://raw.github.com/panticz/lyc/master/rxvx700.h`  
