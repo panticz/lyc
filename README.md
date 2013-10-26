@@ -1,5 +1,6 @@
 lyc
 ===
+Yamaha RX-V3800 and some older models like DSP-AX1 are great AV-Receiver, but unfortunately they have no control / web interface to manage it from outside. With a USB-Serial adapter connected to the reciver RS-232 interface, a computer or router and lyc you can control the reciver. In addition, a web interface can be created with wlyc to provide a web access to all network devices like PC, smartphone or tablet.
 
 ###Linux Yamaha receiver control
 wlyc (Optional, webinterface for lyc: https://github.com/panticz/wlyc)  
@@ -8,11 +9,11 @@ wlyc (Optional, webinterface for lyc: https://github.com/panticz/wlyc)
   * |  
   * PC / Raspberry Pi / Router (e.g. TP-Link-TL-WR1043ND: http://panticz.de/OpenWrt-on-TP-Link-TL-WR1043ND)  
     * |  
-    * USB seriell adapter (e.g. Digitus DA-70156: http://panticz.de/USB-Serial-adapter)  
-    * |  
-    * Serial cable  
-    * |  
-    * Yamaha AV-Receiver (Yamaha RX-V3800)
+      * USB seriell adapter (e.g. Digitus DA-70156: http://panticz.de/USB-Serial-adapter)  
+        * |  
+        * Serial cable  
+        * |  
+        * Yamaha AV-Receiver (Yamaha RX-V3800)
 
 
 ###Download binary
