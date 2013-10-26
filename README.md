@@ -7,7 +7,7 @@ wlyc (Optional, webinterface for lyc: https://github.com/panticz/wlyc)
 * |  
 * lyc https://github.com/panticz/lyc  
   * |  
-  * PC / Raspberry Pi / Router (e.g. TP-Link-TL-WR1043ND: http://panticz.de/OpenWrt-on-TP-Link-TL-WR1043ND)  
+  * PC / Raspberry Pi / Router (e.g. http://panticz.de/OpenWrt-on-TP-Link-TL-WR1043ND)  
     * |  
       * USB seriell adapter (e.g. Digitus DA-70156: http://panticz.de/USB-Serial-adapter)  
         * |  
@@ -37,5 +37,5 @@ http://www.panticz.de/USB-Serial-adapter
 `./lyc volume up`
 
 
-### Cross-Compile for OpenWRT (ar9132) router
+### Cross-Compile for OpenWRT router
 http://www.panticz.de/Crosscompile-OpenWRT
