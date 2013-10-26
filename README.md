@@ -23,5 +23,5 @@ http://www.panticz.de/USB-Serial-adapter
 `./lyc input dvd`  
 `./lyc volume up`
 
-### Compile for OpenWRT (ar9132) router
+### Cross-Compile for OpenWRT (ar9132) router
 http://www.panticz.de/Crosscompile-OpenWRT
