@@ -38,4 +38,4 @@ http://www.panticz.de/USB-Serial-adapter
 
 
 ### Cross-Compile for OpenWRT router
-http://www.panticz.de/Crosscompile-OpenWRT
+https://github.com/panticz/lyc/blob/master/scripts/compile_openwrt_ar9132.sh
