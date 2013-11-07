@@ -26,15 +26,10 @@ make -j$(cat /proc/cpuinfo | grep processor | wc -l)
 
 
 # build lyc
-# export PATH=$PATH:/dev/shm/openwrt/trunk/staging_dir/toolchain-mips_r2_gcc-4.6-linaro_uClibc-0.9.33.2/bin
-export STAGING_DIR=~/openwrt/trunk/staging_dir
-
-# get source
-wget https://raw.github.com/panticz/lyc/master/lyc.c -O lyc.c
-wget https://raw.github.com/panticz/lyc/master/rxvx700.h -O rxvx700.h
-
-#make CC=mips-openwrt-linux-uclibc-gcc LD=mips-openwrt-linux-uclibc-ld
-~/openwrt/trunk/staging_dir/toolchain-mips_r2_gcc-4.6-linaro_uClibc-0.9.33.2/bin/mips-openwrt-linux-uclibc-gcc lyc.c -o lyc
+wget -q https://github.com/panticz/lyc/archive/master.zip -O /tmp/master.zip
+unzip -q /tmp/master.zip
+cd lyc-master
+make mips
 
 # copy file to router
 scp ./lyc root@openwrt:/root
