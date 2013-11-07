@@ -1,4 +1,4 @@
-STAGING_DIR=~/trunk/staging_dir/toolchain-mips_34kc_gcc-4.6-linaro_uClibc-0.9.33.2/bin
+STAGING_DIR=../toolchain-mips_34kc_gcc-4.6-linaro_uClibc-0.9.33.2/bin
 export STAGING_DIR
 
 all:
