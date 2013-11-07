@@ -8,5 +8,5 @@ mips:
 	$(STAGING_DIR)/mips-openwrt-linux-uclibc-gcc lyc.c -o lyc
         
 clean:
-	rm -f *~ *.o *.cgi
+	rm -f *~ *.o *.cgi lyc
 
