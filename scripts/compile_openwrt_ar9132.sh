@@ -21,10 +21,10 @@ make -j$(cat /proc/cpuinfo | grep processor | wc -l)
 
 # download lyc
 wget -q https://github.com/panticz/lyc/archive/master.zip -O /tmp/master.zip
-unzip -q /tmp/master.zip
+unzip -q /tmp/master.zip -d ~/trunk/staging_dir
 
 # compile lyc
-cd lyc-master
+cd ~/trunk/staging_dir/lyc-master
 make mips
 
 # copy file to router
