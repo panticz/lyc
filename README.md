@@ -22,9 +22,9 @@ http://dl.panticz.de/lyc/ar9132/lyc - Atheros AR9132 (TP-LINK TL-WR1043ND / TL-W
 
 ### Compile (Linux)
 1. Download source files  
-`wget https://raw.github.com/panticz/lyc/master/Makefile`  
-`wget https://raw.github.com/panticz/lyc/master/lyc.c`  
-`wget https://raw.github.com/panticz/lyc/master/rxvx700.h`  
+`wget -q https://github.com/panticz/lyc/archive/master.zip -O /tmp/master.zip`  
+`unzip -q /tmp/master.zip -d /tmp/`  
+`cd /tmp/lyc-master`  
 
 2. Compile  
   `make`
