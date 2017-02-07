@@ -4,9 +4,11 @@ export STAGING_DIR
 all:
 	gcc $(FLAGS) $(INCLUDEDIR) lyc.c -o lyc
 
+arm:
+	arm-linux-gnueabihf-gcc lyc.c -o lyc
+
 mips:
 	$(STAGING_DIR)/mips-openwrt-linux-uclibc-gcc lyc.c -o lyc
         
 clean:
 	rm -f *~ *.o *.cgi lyc
-
